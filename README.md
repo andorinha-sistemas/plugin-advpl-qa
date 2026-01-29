@@ -14,20 +14,20 @@ Por enquanto, a extensão está disponível através do arquivo `.vsix` para ins
 
 ---
 
-## 🎯 Funcionalidades
+## ✨ Funcionalidades
 
-### Análise de Código
+### 🔍 Análise Inteligente de Código
 - Análise em tempo real de arquivos `.prw`, `.prx` e `.tlpp`
 - Suporte completo para encoding Windows-1252 (CP1252)
 - Codificação automática em Base64 para envio seguro
 
-### Visualização de Resultados
+### 📊 Visualização de Resultados
 - **Problems Panel** - Integração nativa com o VS Code
 - **Destaque visual** - Linhas problemáticas destacadas com cores por severidade
 - **Informações detalhadas** - Regra, mensagem e localização exata de cada problema
 - **Navegação rápida** - Clique para ir direto à linha problemática
 
-### Relatório Detalhado
+### 📄 Relatório Detalhado
 - Documento virtual em Markdown com visualização rica
 - Estatísticas resumidas em tabela
 - Agrupamento por severidade (Erros, Avisos, Informações)
@@ -35,237 +35,148 @@ Por enquanto, a extensão está disponível através do arquivo `.vsix` para ins
 - Nome dinâmico baseado no arquivo analisado
 - Atualização automática
 
-### Múltiplas Formas de Uso
-- Atalho de teclado: `Cmd+F8` (Mac) / `Ctrl+F8` (Windows/Linux)
-- Botão na toolbar do editor
-- Menu de contexto no Explorer
-- Menu de contexto no Editor
-- Command Palette
+### 🎯 Múltiplas Formas de Uso
+- **Atalho de teclado**: `Cmd+F8` (Mac) / `Ctrl+F8` (Windows/Linux)
+- **Botão na toolbar**: Aparece automaticamente no topo do editor
+- **Menu de contexto**: Botão direito no Explorer ou no Editor
+- **Command Palette**: Acesso via `Ctrl+Shift+P` → "ADVPL QA: Analisar arquivo"
 
-## 🏗️ Estrutura do Projeto
+---
 
-```
-extensao-vscode-qa/
-├── src/
-│   └── extension.ts          # Código principal da extensão
-├── scripts/
-│   ├── install.js             # Script de instalação automática
-│   └── version-bump.js        # Script para incrementar versão
-├── out/                        # Código compilado (gerado)
-├── package.json               # Manifesto da extensão
-├── tsconfig.json              # Configuração TypeScript
-├── .vscodeignore              # Arquivos ignorados no pacote
-├── .gitignore                 # Arquivos ignorados no Git
-├── build-and-install.sh       # Script shell para build e instalação
-├── README.md                  # Este arquivo
-└── RELEASE.md                 # Notas de release
-```
+## 🚀 Instalação
 
-## 🛠️ Tecnologias Utilizadas
+### Requisitos
 
-- **TypeScript** - Linguagem de programação
-- **VS Code Extension API** - API oficial do Visual Studio Code
-- **Node.js** - Runtime environment
-- **HTTP/HTTPS** - Comunicação com serviços externos
-
-## 🚀 Como Desenvolver
-
-### Pré-requisitos
-
-- **Node.js** 16.x ou superior
 - **Visual Studio Code** 1.74.0 ou superior
-- **npm** ou **yarn**
+- **Conexão com internet** (para acessar o serviço de análise)
 
-### Configuração do Ambiente
+### Passo a Passo
 
-1. **Clone o repositório**:
-   ```bash
-   git clone <url-do-repositorio>
-   cd extensao-vscode-qa
-   ```
+1. **Baixe o arquivo** `advpl-qa-X.X.X.vsix` fornecido
+2. **Abra o VS Code**
+3. **Acesse o painel de Extensions**:
+   - Pressione `Ctrl+Shift+X` (Windows/Linux) ou `Cmd+Shift+X` (Mac)
+   - Ou clique no ícone de Extensions na barra lateral esquerda
+4. **Instale o arquivo .vsix**:
+   - Clique nos três pontos (`...`) no topo do painel de Extensions
+   - Selecione **"Install from VSIX..."**
+   - Navegue até o arquivo `advpl-qa-X.X.X.vsix` e selecione-o
+5. **Aguarde a instalação** - A extensão será instalada automaticamente
+6. **Recarregue a janela** (recomendado):
+   - Pressione `Ctrl+R` (Windows/Linux) ou `Cmd+R` (Mac)
+   - Ou feche e reabra o VS Code
 
-2. **Instale as dependências**:
-   ```bash
-   npm install
-   ```
+---
 
-3. **Compile o projeto**:
-   ```bash
-   npm run compile
-   ```
+## 📖 Como Usar
 
-### Executar em Modo de Desenvolvimento
+### Análise de Arquivo
 
-1. **Abra o projeto no VS Code**:
-   ```bash
-   code .
-   ```
+1. **Abra um arquivo** `.prw`, `.prx` ou `.tlpp` no VS Code
+2. **Execute a análise** usando uma das formas:
+   - Pressione `Cmd+F8` (Mac) ou `Ctrl+F8` (Windows/Linux)
+   - Clique no botão 🔬 na toolbar do editor (aparece automaticamente)
+   - Clique com botão direito no arquivo no Explorer → "Analisar arquivo"
+   - Clique com botão direito dentro do editor → "Analisar arquivo"
+   - Use o Command Palette: `Ctrl+Shift+P` → "ADVPL QA: Analisar arquivo"
 
-2. **Pressione F5** para iniciar uma nova janela do VS Code com a extensão carregada
+### Visualizar Resultados
 
-3. **Teste a extensão** na nova janela:
-   - Abra um arquivo `.prw`, `.prx` ou `.tlpp`
-   - Execute o comando de análise
-   - Verifique os resultados
+Após a análise, você verá:
 
-### Scripts Disponíveis
+- **Status Bar** (canto inferior direito):
+  - `🔄 Analisando...` durante o processamento
+  - `✅ QA: OK` quando não há problemas
+  - `⚠️ QA: X problema(s)` quando há problemas encontrados
+  - `❌ QA: Erro` em caso de erro
 
-- `npm run compile` - Compila o TypeScript para JavaScript
-- `npm run watch` - Compila e observa mudanças (modo watch)
-- `npm run version-bump` - Incrementa a versão automaticamente
-- `npm run package` - Incrementa versão + gera pacote `.vsix`
-- `npm run install-extension` - Instala a extensão automaticamente
-- `npm run build-and-install` - Compila + empacota + instala (tudo em um)
+- **Problems Panel**:
+  - Abra o painel de Problemas (`Ctrl+Shift+M` / `Cmd+Shift+M`)
+  - Veja todos os problemas listados com severidade, regra e mensagem
+  - Clique em qualquer problema para navegar até a linha correspondente
 
-### Debugging
+- **Relatório Detalhado**:
+  - Se houver problemas, uma notificação aparecerá com opção "Ver Relatório Detalhado"
+  - O relatório abre em uma nova aba ao lado do código
+  - Clique nos links das linhas para navegar diretamente ao código
 
-1. Abra o projeto no VS Code
-2. Pressione `F5` para iniciar o debug
-3. Uma nova janela do VS Code será aberta com a extensão carregada
-4. Use `console.log()` no código para debug
-5. Os logs aparecerão no **Debug Console** da janela original
+---
 
-### Estrutura do Código
+## 🎨 Recursos Avançados
 
-#### `src/extension.ts`
+### ⚡ Performance e Confiabilidade
+- Timeout de 60 segundos por requisição
+- Retry automático em caso de falha de rede (até 3 tentativas)
+- Prevenção de análises duplicadas
+- Cancelamento automático de análises anteriores se uma nova for iniciada
 
-Arquivo principal contendo toda a lógica da extensão:
+### 📈 Feedback Visual
+- Status bar integrado com indicadores visuais em tempo real
+- Notificações contextuais com opções de ação
+- Cores temáticas na status bar conforme o resultado
 
-- **Interfaces TypeScript**: Definições de tipos para resposta da API
-- **ReportProvider**: Classe que gera relatórios em Markdown
-- **Função `activate()`**: Ponto de entrada da extensão
-- **Função `analyzeFile()`**: Lógica principal de análise
-- **Função `sendToApi()`**: Comunicação com serviço externo
-- **Função `displayResults()`**: Exibição de problemas no Problems Panel
+### 🔧 Tratamento de Erros
+- Mensagens de erro claras e específicas
+- Botão "Tentar Novamente" disponível em caso de erro
+- Retry automático com backoff exponencial
 
-#### `package.json`
+### 🧭 Navegação Inteligente
+- Links clicáveis no relatório para navegar até as linhas
+- Foco automático na linha ao clicar em problemas
+- Navegação rápida entre problemas
 
-Manifesto da extensão contendo:
-- Metadados (nome, versão, descrição)
-- Comandos registrados
-- Menus e keybindings
-- Definições de linguagens
-- Scripts de build
+---
 
-## 📝 Arquitetura
+## 🐛 Problemas ou Sugestões
 
-### Fluxo de Análise
+Encontrou um bug, tem uma sugestão ou precisa de ajuda?
 
-1. Usuário aciona a análise (atalho, botão ou menu)
-2. Extensão valida o arquivo (extensão `.prw`, `.prx` ou `.tlpp`)
-3. Conteúdo do arquivo é codificado em Base64
-4. Requisição HTTP POST é enviada
-5. Resposta é processada e convertida para diagnósticos
-6. Problemas são exibidos no Problems Panel
-7. Relatório detalhado é gerado e disponibilizado
-
-### Componentes Principais
-
-- **DiagnosticCollection**: Gerencia problemas exibidos no Problems Panel
-- **StatusBarItem**: Exibe status da análise na barra de status
-- **ReportProvider**: Gera conteúdo do relatório virtual
-- **Debounce Timer**: Previne análises duplicadas
-- **Request Cancellation**: Cancela requisições pendentes
-
-## 🔧 Configurações e Constantes
-
-### Constantes Principais
-
-```typescript
-const DEFAULT_TIMEOUT = 60000;      // 60 segundos
-const MAX_RETRIES = 3;              // Máximo de tentativas
-const DEBOUNCE_DELAY = 500;         // 500ms de debounce
-```
-
-### Encoding
-
-A extensão utiliza **Windows-1252 (CP1252)** via `latin1` para compatibilidade total com ADVPL/Protheus, garantindo que caracteres acentuados sejam exibidos corretamente.
-
-## 🧪 Testes
-
-Para testar a extensão:
-
-1. Compile o projeto: `npm run compile`
-2. Execute em modo debug: `F5`
-3. Na nova janela, abra um arquivo de teste
-4. Execute a análise e verifique:
-   - Problemas aparecem no Problems Panel
-   - Status bar mostra o resultado
-   - Relatório pode ser visualizado
-   - Navegação até linhas funciona
-
-## 📦 Empacotamento
-
-Para criar um pacote `.vsix` para distribuição:
-
-```bash
-npm run package
-```
-
-Isso irá:
-1. Incrementar a versão automaticamente
-2. Compilar o código
-3. Gerar o arquivo `.vsix`
-
-O arquivo será criado na raiz do projeto com o nome `advpl-qa-X.X.X.vsix`.
-
-## 🐛 Reportar Problemas
-
-Encontrou um bug ou tem uma sugestão? Abra uma **Issue** no repositório!
+**Abra uma Issue** no repositório do projeto e nossa equipe irá resolver!
 
 ### Como Reportar
 
 1. Vá até a seção de **Issues** do repositório
 2. Clique em **"New Issue"**
-3. Preencha o template com:
-   - **Descrição do problema**
-   - **Passos para reproduzir**
+3. Preencha com:
+   - **Descrição do problema ou sugestão**
+   - **Passos para reproduzir** (se aplicável)
    - **Comportamento esperado**
    - **Comportamento atual**
    - **Versão do VS Code**
    - **Versão da extensão**
    - **Sistema operacional**
 
-### Informações Úteis para Debug
+### Informações Úteis
 
 Se possível, inclua:
-- Logs do console do desenvolvedor (`Help` → `Toggle Developer Tools`)
 - Screenshots do problema
+- Logs do console do desenvolvedor (`Help` → `Toggle Developer Tools`)
 - Arquivo de exemplo que causa o problema (se possível)
 
-## 🤝 Contribuindo
+---
 
-Contribuições são bem-vindas! Para contribuir:
+## 📋 Tipos de Arquivo Suportados
 
-1. Faça um **Fork** do repositório
-2. Crie uma **branch** para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Faça suas alterações
-4. **Commit** suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
-5. **Push** para a branch (`git push origin feature/MinhaFeature`)
-6. Abra um **Pull Request**
+A extensão funciona com os seguintes tipos de arquivo:
 
-### Padrões de Código
+- **`.prw`** - Arquivos PRW (Protheus)
+- **`.prx`** - Arquivos PRX (Protheus)
+- **`.tlpp`** - Arquivos TLPP (Protheus)
 
-- Use **TypeScript** com tipos explícitos
-- Siga as convenções do VS Code Extension API
-- Adicione comentários para código complexo
-- Mantenha funções pequenas e focadas
+---
 
-## 📚 Recursos e Documentação
+## 🔮 Próximas Versões
 
-### Documentação Oficial
+Melhorias planejadas:
 
-- [VS Code Extension API](https://code.visualstudio.com/api)
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-- [Contribution Points](https://code.visualstudio.com/api/references/contribution-points)
+- ⏳ Publicação na Visual Studio Code Marketplace
+- ⏳ Configurações customizáveis via settings
+- ⏳ Análise automática ao salvar arquivo
+- ⏳ Filtros de regras a ignorar
+- ⏳ Histórico de análises
+- ⏳ Exportação de relatórios em PDF/HTML
 
-### Conceitos Utilizados
-
-- **Text Document Content Provider**: Para relatórios virtuais
-- **Diagnostic Collection**: Para problemas no Problems Panel
-- **Status Bar API**: Para feedback visual
-- **Command API**: Para comandos da extensão
-- **Menu Contributions**: Para menus de contexto
+---
 
 ## 📄 Licença
 
@@ -273,25 +184,13 @@ MIT License - Livre para uso pessoal e comercial.
 
 **Todos os direitos reservados a TOTVS.**
 
+---
+
 ## 👨‍💻 Desenvolvido por
 
 **Andorinha Sistemas**
 
 Esta extensão foi desenvolvida pela equipe da Andorinha Sistemas para melhorar a qualidade do código ADVPL/Protheus e facilitar o desenvolvimento.
-
----
-
-## 🔮 Roadmap
-
-Melhorias planejadas para futuras versões:
-
-- ⏳ Configurações customizáveis via settings
-- ⏳ Análise automática ao salvar arquivo
-- ⏳ Filtros de regras a ignorar
-- ⏳ Histórico de análises
-- ⏳ Exportação de relatórios em PDF/HTML
-- ⏳ Suporte para múltiplos arquivos simultâneos
-- ⏳ Cache de resultados
 
 ---
 
